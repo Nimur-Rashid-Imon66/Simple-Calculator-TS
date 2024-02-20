@@ -51,9 +51,16 @@ const equal = document.querySelector<HTMLButtonElement>('#equal')!;
 const ac = document.querySelector<HTMLButtonElement>('#ac')!;
 let num1: number = -123;
 let num2: number = -123;
+let pointCnt: number = 0;
 let oparetion: string = 'no';
 
 function display(element: HTMLInputElement, value: string) {
+  let digit: string = element.innerHTML;
+  if (digit.length === 8)
+  {
+    alert("Sorry!!You can enter only eight digit.");
+    return;
+  }
   element.innerHTML += value;
 }
 function calculation() {
@@ -82,7 +89,14 @@ function calculation() {
         }
         case '*': {
           let ans: number = (num1 * num2);
-          outputDisplay.innerHTML = String(ans);
+          let ansStr = String(ans);
+          if (ansStr.length > 10)
+          {
+            outputDisplay.innerHTML = String(ans.toExponential(0));
+            alert(" Ans is to big so it showed in exponential form");
+          }
+          else outputDisplay.innerHTML = String(ans);
+          // outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
           num1 = ans;
           num2 = -123;
@@ -104,6 +118,21 @@ function calculation() {
     return;
   }
 }
+function pressOperator(op:string) {
+  if (num1 !== -123) {
+    console.log(num1,oparetion, num2);
+    calculation();
+    oparetion = 'no';
+    return;
+  }
+  if (outputDisplay.innerHTML === "") return;
+  if (outputDisplay.innerHTML === ".") alert("Enter some number plz");
+  oparetion = op;
+  let x:any = Number(outputDisplay.innerHTML);
+  num1 = x;
+  pointCnt = 0;
+  outputDisplay.innerHTML = "";
+}
 
 
 function addition() {
@@ -115,7 +144,13 @@ function addition() {
   }
   if(outputDisplay.innerHTML === "") return;
   oparetion = '+';
-  num1 = Number(outputDisplay.innerHTML);
+  let x:any = Number(outputDisplay.innerHTML);
+  console.log(num1,typeof num1)
+  if (typeof x !== "number") {
+    alert("Enter a valid number");
+    allclear();
+  }
+  num1 = x;
   outputDisplay.innerHTML = "";
 }
 
@@ -127,7 +162,14 @@ function subtraction() {
   }
   if(outputDisplay.innerHTML === "") return;
   oparetion = '-';
-  num1 = Number(outputDisplay.innerHTML);
+  pointCnt
+  let x:any = Number(outputDisplay.innerHTML);
+  console.log(num1,typeof num1)
+  if (typeof x !== "number") {
+    alert("Enter a valid number");
+    allclear();
+  }
+  num1 = x;
   outputDisplay.innerHTML = "";
 }
 
@@ -139,7 +181,13 @@ function division() {
   }
   if(outputDisplay.innerHTML === "") return;
   oparetion = '/';
-  num1 = Number(outputDisplay.innerHTML);
+  let x:any = Number(outputDisplay.innerHTML);
+  console.log(num1,typeof num1)
+  if (typeof x !== "number") {
+    alert("Enter a valid number");
+    allclear();
+  }
+  num1 = x;
   outputDisplay.innerHTML = "";
 }
 
@@ -151,12 +199,19 @@ function multiplication() {
   }
   if (outputDisplay.innerHTML === "") return;
   oparetion = '*';
-  num1 = Number(outputDisplay.innerHTML);
+  let x:any = Number(outputDisplay.innerHTML);
+  console.log(num1,typeof num1)
+  if (typeof x !== "number") {
+    alert("Enter a valid number");
+    allclear();
+  }
+  num1 = x;
   outputDisplay.innerHTML = "";
 }
 
 
 function allclear() {
+  pointCnt = 0;
   num1 = -123;
   num2 = -123;
   oparetion = 'no';
@@ -174,14 +229,22 @@ seven.addEventListener('click', () => display(outputDisplay, '7'));
 eight.addEventListener('click', () => display(outputDisplay, '8'));
 nine.addEventListener('click', () => display(outputDisplay, '9'));
 zero.addEventListener('click', () => display(outputDisplay, '0'));
-point.addEventListener('click', () => display(outputDisplay, '.'));
+point.addEventListener('click', () => {
+  if (pointCnt === 0) {
+    display(outputDisplay, '.');
+    pointCnt = 1;
+  }
+  else {
+    alert("You can press point at most one time...")
+  }
+});
 
 
 equal.addEventListener('click', () => calculation());
-plus.addEventListener('click', () => addition());
-minus.addEventListener('click', () => subtraction());
-multi.addEventListener('click', () => multiplication());
-divi.addEventListener('click', () => division());
+plus.addEventListener('click', () => pressOperator("+"));
+minus.addEventListener('click', () => pressOperator("-"));
+multi.addEventListener('click', () => pressOperator("*"));
+divi.addEventListener('click', () => pressOperator("/"));
 ac.addEventListener('click', () => allclear());
 
 
