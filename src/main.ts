@@ -135,79 +135,79 @@ function pressOperator(op:string) {
 }
 
 
-function addition() {
-  if (num1 !== -123) {
-    console.log(num1,oparetion, num2);
-    calculation();
-    oparetion = 'no';
-    return;
-  }
-  if(outputDisplay.innerHTML === "") return;
-  oparetion = '+';
-  let x:any = Number(outputDisplay.innerHTML);
-  console.log(num1,typeof num1)
-  if (typeof x !== "number") {
-    alert("Enter a valid number");
-    allclear();
-  }
-  num1 = x;
-  outputDisplay.innerHTML = "";
-}
+// function addition() {
+//   if (num1 !== -123) {
+//     console.log(num1,oparetion, num2);
+//     calculation();
+//     oparetion = 'no';
+//     return;
+//   }
+//   if(outputDisplay.innerHTML === "") return;
+//   oparetion = '+';
+//   let x:any = Number(outputDisplay.innerHTML);
+//   console.log(num1,typeof num1)
+//   if (typeof x !== "number") {
+//     alert("Enter a valid number");
+//     allclear();
+//   }
+//   num1 = x;
+//   outputDisplay.innerHTML = "";
+// }
 
-function subtraction() {
-  if (num1 !== -123) {
-    calculation();
-    oparetion = 'no';
-    return;
-  }
-  if(outputDisplay.innerHTML === "") return;
-  oparetion = '-';
-  pointCnt
-  let x:any = Number(outputDisplay.innerHTML);
-  console.log(num1,typeof num1)
-  if (typeof x !== "number") {
-    alert("Enter a valid number");
-    allclear();
-  }
-  num1 = x;
-  outputDisplay.innerHTML = "";
-}
+// function subtraction() {
+//   if (num1 !== -123) {
+//     calculation();
+//     oparetion = 'no';
+//     return;
+//   }
+//   if(outputDisplay.innerHTML === "") return;
+//   oparetion = '-';
+//   pointCnt
+//   let x:any = Number(outputDisplay.innerHTML);
+//   console.log(num1,typeof num1)
+//   if (typeof x !== "number") {
+//     alert("Enter a valid number");
+//     allclear();
+//   }
+//   num1 = x;
+//   outputDisplay.innerHTML = "";
+// }
 
-function division() {
-  if (num1 !== -123) {
-    calculation();
-    oparetion = 'no';
-    return;
-  }
-  if(outputDisplay.innerHTML === "") return;
-  oparetion = '/';
-  let x:any = Number(outputDisplay.innerHTML);
-  console.log(num1,typeof num1)
-  if (typeof x !== "number") {
-    alert("Enter a valid number");
-    allclear();
-  }
-  num1 = x;
-  outputDisplay.innerHTML = "";
-}
+// function division() {
+//   if (num1 !== -123) {
+//     calculation();
+//     oparetion = 'no';
+//     return;
+//   }
+//   if(outputDisplay.innerHTML === "") return;
+//   oparetion = '/';
+//   let x:any = Number(outputDisplay.innerHTML);
+//   console.log(num1,typeof num1)
+//   if (typeof x !== "number") {
+//     alert("Enter a valid number");
+//     allclear();
+//   }
+//   num1 = x;
+//   outputDisplay.innerHTML = "";
+// }
 
-function multiplication() {
-  if (num1 !== -123) {
-    calculation();
-    oparetion = 'no';
-    return;
-  }
-  if (outputDisplay.innerHTML === "") return;
-  oparetion = '*';
-  let x:any = Number(outputDisplay.innerHTML);
-  console.log(num1,typeof num1)
-  if (typeof x !== "number") {
-    alert("Enter a valid number");
-    allclear();
-  }
-  num1 = x;
-  outputDisplay.innerHTML = "";
-}
+// function multiplication() {
+//   if (num1 !== -123) {
+//     calculation();
+//     oparetion = 'no';
+//     return;
+//   }
+//   if (outputDisplay.innerHTML === "") return;
+//   oparetion = '*';
+//   let x:any = Number(outputDisplay.innerHTML);
+//   console.log(num1,typeof num1)
+//   if (typeof x !== "number") {
+//     alert("Enter a valid number");
+//     allclear();
+//   }
+//   num1 = x;
+//   outputDisplay.innerHTML = "";
+// }
 
 
 function allclear() {
