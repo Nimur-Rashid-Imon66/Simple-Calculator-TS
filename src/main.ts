@@ -1,5 +1,5 @@
 import './style.css'
-
+// <p class="note">NOTE: After each calculation press the AC for new one </p>
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div >
@@ -8,7 +8,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div id='display' class="display" > </div>
       <button id="ac" type="button">AC</button> 
     </div>
-    <p class="note">NOTE: After each calculation press the AC for new one </p>
+    
     <div class="card">
       <button id="one" type="button">1</button>
       <button id="two" type="button">2</button>
@@ -75,7 +75,7 @@ function calculation() {
           let ans = num1 + num2;
           outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
-          num1 = ans;
+          num1 = -123;
           num2 = -123;
           break;
         }
@@ -83,7 +83,7 @@ function calculation() {
           let ans = num1 - num2;
           outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
-          num1 = ans;
+          num1 = -123;
           num2 = -123;
           break;
         }
@@ -98,15 +98,19 @@ function calculation() {
           else outputDisplay.innerHTML = String(ans);
           // outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
-          num1 = ans;
+          num1 = -123;
           num2 = -123;
           break;
         }
         case '/': {
+          if (num2 == 0)
+          {
+            alert("Undefine Calculation!!! Please press AC first to recalculate.");
+          }
           let ans: number = (num1 / num2);
           outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
-          num1 = ans;
+          num1 = -123;
           num2 = -123;
           break;
         }
@@ -120,13 +124,28 @@ function calculation() {
 }
 function pressOperator(op:string) {
   if (num1 !== -123) {
-    console.log(num1,oparetion, num2);
+    
+    if (outputDisplay.innerHTML == "")
+    {
+      if (op === oparetion)
+      {
+        oparetion = op;
+        alert("Enter 2nd oparend.");
+        return;
+      }
+      oparetion = op;
+      alert("You change the operator.Now enter 2nd oparend.");
+      return;
+    }
     calculation();
     oparetion = 'no';
+    
     return;
   }
-  if (outputDisplay.innerHTML === "") return;
-  if (outputDisplay.innerHTML === ".") alert("Enter some number plz");
+  if (outputDisplay.innerHTML === "" || outputDisplay.innerHTML === ".") {
+    alert("Enter some number plz");
+    return;
+  }
   oparetion = op;
   let x:any = Number(outputDisplay.innerHTML);
   num1 = x;
