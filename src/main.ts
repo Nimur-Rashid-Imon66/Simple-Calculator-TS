@@ -53,8 +53,13 @@ let num1: number = -123;
 let num2: number = -123;
 let pointCnt: number = 0;
 let oparetion: string = 'no';
+let isAc: number = 0;
 
 function display(element: HTMLInputElement, value: string) {
+  if (isAc) {
+    alert("Press Ac first!!");
+    return;
+  }
   let digit: string = element.innerHTML;
   if (digit.length === 8)
   {
@@ -64,6 +69,10 @@ function display(element: HTMLInputElement, value: string) {
   element.innerHTML += value;
 }
 function calculation() {
+  if (isAc) {
+    alert("Press Ac first!!");
+    return;
+  }
   let tamp = outputDisplay.innerHTML;
   if (oparetion == 'no') return;
   if (num1 !== -123) {
@@ -105,10 +114,18 @@ function calculation() {
         case '/': {
           if (num2 == 0)
           {
+            isAc = 1;
             alert("Undefine Calculation!!! Please press AC first to recalculate.");
           }
           let ans: number = (num1 / num2);
-          outputDisplay.innerHTML = String(ans);
+          let ansStr = String(ans);
+          if (ansStr.length > 10)
+          {
+            outputDisplay.innerHTML = String(ans.toExponential(0));
+            alert(" Ans is to big so it showed in exponential form");
+          }
+          else outputDisplay.innerHTML = String(ans);
+          // outputDisplay.innerHTML = String(ans);
           oparetion = 'no';
           num1 = -123;
           num2 = -123;
@@ -122,7 +139,11 @@ function calculation() {
     return;
   }
 }
-function pressOperator(op:string) {
+function pressOperator(op: string) {
+  if (isAc) {
+    alert("Press Ac first!!");
+    return;
+  }
   if (num1 !== -123) {
     
     if (outputDisplay.innerHTML == "")
@@ -154,6 +175,7 @@ function pressOperator(op:string) {
 }
 
 function allclear() {
+  isAc = 0;
   pointCnt = 0;
   num1 = -123;
   num2 = -123;
